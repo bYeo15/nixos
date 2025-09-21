@@ -39,3 +39,15 @@
 |  |--[ config/         # Any configuration files containing sensitive information (typically
                         # realisations of options provided in modules)
 ```
+
+
+## Organisation
+
+This config is designed to be user (managed through `home-manager`) first.
+Users should be host-agnostic, while hosts can be specifically configured to match user profiles.
+
+
+## Future
+
+- Greater use of host/user-level modules to reduce duplication
+- Bluetooth secrets + `device -> alias` utilty
