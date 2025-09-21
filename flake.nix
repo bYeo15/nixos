@@ -23,24 +23,39 @@
     };
 
 
-    outputs = { self, nixpkgs, home-manager, hardware, agenix, nur, ...}@inputs:
+    outputs = { self, nixpkgs, home-manager, hardware, agenix, nur, ... }@inputs:
         let
-            utils = import ./utils { lib = nixpkgs.lib };
+            # Load library of personal utils
+            utils = import ./utils { lib = nixpkgs.lib; };
             base_modules = [
-                { _module.args = { inherit utils; }; }
+                { _module.args = { utilities = utils; }; }
+
+                # Universal modules and secrets
                 ./modules
-                agenix.nixosModules.default
+                ./secrets
+                ./resources
+            ];
+            nixos_modules = [
                 nur.modules.nixos.default
+                agenix.nixosModules.default
+            ];
+            home_modules = [
+                nur.modules.homeManager.default
+                agenix.homeManagerModules.default
             ];
         in {
             nixosConfigurations = {
                 # ---[ Primary Laptop ]---
-                nixpad = nixpkgs.lib.nixosSystem {
+                "nixpad" = nixpkgs.lib.nixosSystem {
                     specialArgs = { inherit inputs; };
 
                     modules = [
+                        ./hosts/modules
                         ./hosts/nixpad
-                    ] ++ base_modules;
+
+                        # Only user on this is main
+                        ./users/ben/user.nix
+                    ] ++ base_modules ++ nixos_modules;
                 };
             };
 
@@ -52,8 +67,10 @@
                     extraSpecialArgs = { inherit inputs; };
 
                     modules = [
+                        ./users/modules
                         ./users/ben
-                    ] ++ base_modules;
+
+                    ] ++ base_modules ++ home_modules;
                 };
             };
         };

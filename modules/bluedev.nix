@@ -3,13 +3,9 @@
 let
     device = with lib; with types; submodule {
         options = {
-            name = mkOption {
+            name = {
                 type = str;
-                description = "Name for the device";
-            };
-            cmdName = {
-                type = str;
-                description = "Name for the device, when referenced in commands";
+                description = "Alias name for the device's MAC";
             };
             mac = mkOption {
                 type = str;

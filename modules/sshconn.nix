@@ -7,14 +7,14 @@ let
                 type = listOf (str);
                 description = "Tags for this connection";
             };
-            profile = mkOption {
+            block = mkOption {
                 type = attrs;
-                description = "Profile fitting the format of `networking.networkmanager.ensureProfiles.profile";
+                description = "Profile fitting the format of `programs.ssh.matchBlocks`";
             };
         };
     };
 in {
-    options.netconn = with lib; with types; {
+    options.sshconn = with lib; with types; {
         connections = mkOption {
             type = attrsOf (connection);
             description = "A set of available tagged connections";

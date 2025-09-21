@@ -12,6 +12,18 @@ tags [list<str>] : list of tags used to identify the kind of network (used when 
 ```
 
 
+## `sshconn`
+
+Provides configuration options for ssh (using SSH `matchBlocks` style `attrset`s).
+
+`sshconn` provides an `attrset` of connections. Each one consists of;
+
+```
+block [attrset] : matchBlocks style attrset of connection configuration
+tags [list<str>] : list of tags used to identify the kind of connection (used when filtering)
+```
+
+
 ## `renix`
 
 `renix.nix` describes a collection of themes for a user's environment, with each theme described as the following;
@@ -51,8 +63,7 @@ Provides options for bluetooth device management.
 Each device is described as;
 
 ```
-name [str] : the name to use for the device
-cmdName [str] : the name to use for the device in commands
+name [str] : the name to use for the device in commands
 mac [str] : the MAC address of the device
 ```
 

@@ -61,13 +61,13 @@ let
             resources = mkOption {
                 type = attrsOf (either path str);
                 default = { };
-                description = '''
+                description = ''
                     A set of available resources
                     Recognised resources are;
                         - background [path] : The background image for the desktop & lock screen
                         - fragment [path] : The fragment shader to be launched as a desktop background
                         - helixBase [str] : The `helix` theme to use as a base for the custom theme
-                ''';
+                '';
             };
         };
     };
