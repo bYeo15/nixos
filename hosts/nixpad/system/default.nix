@@ -2,6 +2,7 @@
 
 {
     imports = [
+        ./age.nix
         ./bluetooth.nix
         ./boot.nix
         ./display.nix
