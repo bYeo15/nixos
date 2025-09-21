@@ -8,7 +8,7 @@
             CPU_SCALING_ON_BAT = "performance";
 
             CPU_ENERGY_PERF_POLICY_ON_AC = "balance_performance";
-            CPU_ENERGY_PERF_POLICY_ON_BAC = "balance_power";
+            CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_power";
         };
     };
 }
