@@ -2,6 +2,8 @@
 
 {
     imports = [
+        ./dbus.nix
+        ./envfs.nix
         ./logind.nix
         ./openssh.nix
         ./openvpn.nix
