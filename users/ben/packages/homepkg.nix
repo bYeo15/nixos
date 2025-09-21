@@ -10,6 +10,16 @@
         glow
         libsixel
 
+        # --[ LSP ]--
+        nil
+        clang-tools
+        ty
+        bash-language-server
+        texlab
+        rust-analyzer
+        jdt-language-server
+        haskell-language-server
+
         # --[ Authorship ]--
         libreoffice-fresh
         krita
