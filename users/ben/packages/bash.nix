@@ -38,8 +38,8 @@
                 printf '\e]7;file://%s%s\e\\' "''${HOSTNAME}" "''${encoded}"
             }
             PROMPT_COMMAND=''${PROMPT_COMMAND:+''${PROMPT_COMMAND%;}; }osc7_cwd
-            nrun() { PROG="$1"; shift; nix run "nixpkgs#''${PROG}" -- ''$@; }
-            nrs() { nixos-rebuild switch --flake "~/.nixconf#''$1" --sudo; }
+            nrun() { PROG="$1"; shift; nix run nixpkgs#"''${PROG}" -- ''$@; }
+            nrs() { if [[ "''$#" -ne 1 ]]; then echo "Usage: <system derivation name>"; else nixos-rebuild switch --flake ~/.nixconf#"''$1" --sudo; fi; }
         '';
 
         historyIgnore = [
