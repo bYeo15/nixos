@@ -65,4 +65,5 @@ Gaming user running headless X11. Acts as host for Steam Remote Play.
 ## Future
 
 - Greater use of host/user-level modules to reduce duplication
+  - See `nixpad` & `nixbook` for high level of duplication
 - Bluetooth secrets + `device -> alias` utilty
