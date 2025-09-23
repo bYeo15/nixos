@@ -7,6 +7,8 @@
 
         nixpkgs.url = "github:NixOs/nixpkgs/nixos-unstable";
 
+        # TODO : stable nixpkgs for node devices
+
         home-manager = {
     		    url = "github:nix-community/home-manager";
     		    inputs.nixpkgs.follows = "nixpkgs";
@@ -57,6 +59,22 @@
                         ./users/ben/user.nix
                     ] ++ base_modules ++ nixos_modules;
                 };
+
+                # ---[ Node Laptop ]---
+                "nixbook" = nixpkgs.lib.nixosSystem {
+                    specialArgs = { inherit inputs; };
+
+                    modules = [
+                        ./hosts/modules
+                        ./hosts/nixbook
+                    ] ++ base_modules ++ nixos_modules;
+                };
+
+                # ---[ Pi Node ]---
+                # TODO
+
+                # ---[ Gaming PC ]---
+                # TODO
             };
 
             homeConfigurations = {
@@ -72,6 +90,9 @@
 
                     ] ++ base_modules ++ home_modules;
                 };
+
+                # ---[ Gaming User ]---
+                # TODO
             };
         };
 }
