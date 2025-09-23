@@ -1,6 +1,6 @@
 # NixOS Configuration
 
-## Overview
+## Layout
 
 ```
 ~/.nixconf/
@@ -45,6 +45,21 @@
 
 This config is designed to be user (managed through `home-manager`) first.
 Users should be host-agnostic, while hosts can be specifically configured to match user profiles.
+
+
+## Users
+
+### `ben`
+
+The main user, only non-headless user.
+
+`sway` desktop & general pool of tools.
+
+
+### `gaming`
+
+Gaming user running headless X11. Acts as host for Steam Remote Play.
+
 
 
 ## Future

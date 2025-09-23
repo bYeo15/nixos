@@ -4,18 +4,11 @@
 
 Main user, general use
 
-Wayland desktop
+`sway` desktop
 
 
 ## `gaming`
 
 Gaming tuned user
 
-X11 <todo : env> desktop
-
-
-## `minimal`
-
-Node user
-
-Headless
+X11 (`xvfb`) Headless desktop
