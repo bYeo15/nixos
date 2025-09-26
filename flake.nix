@@ -22,10 +22,22 @@
     		    url = "github:nix-community/NUR";
     		    inputs.nixpkgs.follows = "nixpkgs";
     		};
+
+		    nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
     };
 
 
-    outputs = { self, nixpkgs, home-manager, hardware, agenix, nur, ... }@inputs:
+    nixConfig = {
+        extra-substituters = [
+            "https://nixos-raspberrypi.cachix.org"
+        ];
+        extra-trusted-public-keys = [
+            "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
+        ];
+    };
+
+
+    outputs = { self, nixpkgs, home-manager, hardware, agenix, nur, nixos-raspberrypi ... }@inputs:
         let
             # Load library of personal utils
             utils = import ./utils { lib = nixpkgs.lib; };
@@ -67,11 +79,33 @@
                     modules = [
                         ./hosts/modules
                         ./hosts/nixbook
+
+                        ./users/admin.nix
+                        ./users/node.nix
                     ] ++ base_modules ++ nixos_modules;
                 };
 
                 # ---[ Pi Node ]---
-                # TODO
+                "nixpi" = nixos-raspberrypi.lib.nixosSystem {
+                    specialArgs = { inherit inputs; };
+
+                    modules = [
+                        {
+                            imports = with nixos-raspberrypi.nixosModules; [
+                                raspberry-pi-5.base
+                                raspberry-pi-5.page-size-16k
+                                raspberry-pi-5.display-vc4
+                                raspberry-pi-5.bluetooth
+                            ];
+                        }
+
+                        ./hosts/modules
+                        ./hosts/nixpi
+
+                        ./users/admin.nix
+                        ./users/staging.nix
+                    ] ++ base_modules ++ nixos_modules;
+                };
 
                 # ---[ Gaming PC ]---
                 # TODO
