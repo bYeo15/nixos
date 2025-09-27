@@ -84,8 +84,8 @@
                 };
 
                 # ---[ Pi Node ]---
-                "nixpi" = nixos-raspberrypi.lib.nixosSystem {
-                    specialArgs = { inherit inputs; };
+                "nixpi" = nixos-raspberrypi.lib.nixosSystemFull {
+                    specialArgs = { inherit inputs; inherit nixos-raspberrypi; };
 
                     modules = [
                         ./hosts/modules
