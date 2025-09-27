@@ -7,8 +7,6 @@
 
         nixpkgs.url = "github:NixOs/nixpkgs/nixos-unstable";
 
-        # TODO : stable nixpkgs for node devices
-
         home-manager = {
     		    url = "github:nix-community/home-manager";
     		    inputs.nixpkgs.follows = "nixpkgs";
@@ -37,7 +35,7 @@
     };
 
 
-    outputs = { self, nixpkgs, home-manager, hardware, agenix, nur, nixos-raspberrypi ... }@inputs:
+    outputs = { self, nixpkgs, home-manager, hardware, agenix, nur, nixos-raspberrypi, ... }@inputs:
         let
             # Load library of personal utils
             utils = import ./utils { lib = nixpkgs.lib; };
@@ -90,15 +88,6 @@
                     specialArgs = { inherit inputs; };
 
                     modules = [
-                        {
-                            imports = with nixos-raspberrypi.nixosModules; [
-                                raspberry-pi-5.base
-                                raspberry-pi-5.page-size-16k
-                                raspberry-pi-5.display-vc4
-                                raspberry-pi-5.bluetooth
-                            ];
-                        }
-
                         ./hosts/modules
                         ./hosts/nixpi
 
