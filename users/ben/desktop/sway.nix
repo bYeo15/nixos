@@ -13,15 +13,20 @@ in with config.renix.activeTheme; {
             output = {
                 eDP-1 = {
                     resolution = "1920x1200";
-                    position = "0 0";
+                    position = "1200 0";
                 };
                 HDMI-A-1 = {
                     resolution = "1920x1200";
-                    position = "1920 0";
+                    position = "3120 0";
                 };
                 DP-7 = {
                     resolution = "1920x1200";
-                    position = "1920 0";
+                    position = "3120 0";
+                };
+                DP-8 = {
+                    resolution = "1920x1200";
+                    position = "0 0";
+                    transform = "90";
                 };
 
                 "*" = {
@@ -163,6 +168,12 @@ in with config.renix.activeTheme; {
                     always = false;
                     command = ''
                         ${pkgs.glpaper}/bin/glpaper -F DP-7 ${resources.fragment}
+                    '';
+                }
+                {
+                    always = false;
+                    command = ''
+                        ${pkgs.glpaper}/bin/glpaper -F DP-8 ${resources.fragment}
                     '';
                 }
             ];
