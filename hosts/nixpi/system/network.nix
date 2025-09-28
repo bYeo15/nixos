@@ -28,6 +28,6 @@
 
         plugins = lib.mkForce [ ];
 
-        ensureProfiles.profiles = utilities.filterTagged "profile" [ "home" ] config.netconn.connections;
+        ensureProfiles.profiles = utilities.filterTagged "profile" [ "home5g" ] config.netconn.connections;
     };
 }
