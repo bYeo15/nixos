@@ -259,7 +259,24 @@
         "home-manager": "home-manager_2",
         "nixos-raspberrypi": "nixos-raspberrypi",
         "nixpkgs": "nixpkgs_3",
-        "nur": "nur"
+        "nur": "nur",
+        "secrets": "secrets"
+      }
+    },
+    "secrets": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1759202413,
+        "narHash": "sha256-mcM5RwllhXYHSrKe2I6uqHNpDh1N5Y6YUE0qfy53tug=",
+        "ref": "refs/heads/main",
+        "rev": "c24e857d9d6171433d8620cc2bd5add00031e5fb",
+        "revCount": 4,
+        "type": "git",
+        "url": "file:./secrets"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:./secrets"
       }
     },
     "systems": {

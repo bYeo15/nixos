@@ -2,8 +2,13 @@
     description = "NixOS + HomeManager Configuration";
 
     inputs = {
-        # Use git submodules
-        self.submodules = true;
+        # Local submodule, exposed as a file to ensure
+        # git access isn't always required (ie. systems/users
+        # can be build WITHOUT access to private staging)
+        secrets = {
+            url = "git+file:./secrets";
+            flake = false;
+        };
 
         nixpkgs.url = "github:NixOs/nixpkgs/nixos-unstable";
 
@@ -35,17 +40,19 @@
     };
 
 
-    outputs = { self, nixpkgs, home-manager, hardware, agenix, nur, nixos-raspberrypi, ... }@inputs:
+    outputs = { self, secrets, nixpkgs, home-manager, hardware, agenix, nur, nixos-raspberrypi, ... }@inputs:
         let
             # Load library of personal utils
             utils = import ./utils { lib = nixpkgs.lib; };
             base_modules = [
+                # Ensure modules can access utilities (note that "utils" results in a collision
+                # with some NetworkManager module lol)
                 { _module.args = { utilities = utils; }; }
 
                 # Universal modules and secrets
                 ./modules
-                ./secrets
                 ./resources
+                "${secrets}"        # String interpolation resolves input -> store path...
             ];
             nixos_modules = [
                 nur.modules.nixos.default
