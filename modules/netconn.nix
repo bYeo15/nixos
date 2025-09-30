@@ -20,5 +20,10 @@ in {
             description = "A set of available tagged connections";
             default = { };
         };
+        dhcpMappings = mkOption {
+            type = listOf (str);
+            description = "A list of DHCP mappings (MAC -> subnet IP)";
+            default = [];
+        };
     };
 }
