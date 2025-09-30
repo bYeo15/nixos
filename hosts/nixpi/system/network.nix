@@ -15,19 +15,22 @@
             trustedInterfaces = [ "end0" ];
         };
 
-        nftables.ruleset = ''
-            table ip nat {
-                chain POSTROUTING {
-                    type nat hook postrouting priority 100;
-                    oifname "wlan0" counter masqerade
+        nftables = {
+            enable = true;
+            ruleset = ''
+                table ip nat {
+                    chain POSTROUTING {
+                        type nat hook postrouting priority 100;
+                        oifname "wlan0" counter masquerade
+                    }
                 }
-            }
-            table ip filter {
-                chain INPUT {
-                    iifname "end0" counter accept
+                table ip filter {
+                    chain INPUT {
+                        iifname "end0" counter accept
+                    }
                 }
-            }
-        '';
+            '';
+        };
 
         resolvconf.enable = false;
 
