@@ -12,6 +12,8 @@
 
         firewall = {
             enable = true;
+            allowedTCPPorts = [ 53 ];
+            allowedUDPPorts = [ 53 ];
         };
 
         resolvconf.enable = false;
@@ -28,6 +30,28 @@
 
         plugins = lib.mkForce [ ];
 
-        ensureProfiles.profiles = utilities.filterTagged "profile" [ "home5g" ] config.netconn.connections;
+        wifi.powersave = false;
+
+        ensureProfiles.profiles = lib.mergeAttrsList [
+            (utilities.filterTagged "profile" [ "home5g" ] config.netconn.connections)
+
+            # Static ethernet as subnet DHCP manager
+            {
+                piEth = {
+                    connection = {
+                        id = "piEth";
+                        type = "ethernet";
+                    };
+                    ipv4 = {
+                        method = "manual";
+                        addresses = "10.0.0.1";
+                    };
+                    ipv6 = {
+                        addr-gen-mode = "stable-privacy";
+                        method = "auto";
+                    };
+                };
+            }
+        ];
     };
 }

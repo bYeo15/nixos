@@ -2,6 +2,7 @@
 
 {
     imports = [
+        ./dnsmasq.nix
         ./openssh.nix
     ];
 }
