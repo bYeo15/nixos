@@ -10,6 +10,7 @@
             # 2-10 are reserved for static assignment
             dhcp-range = [ "10.0.0.10,10.0.0.254,255.255.255.0,6h" ];
             dhcp-host = config.netconn.dhcpMappings;
+            dhcp-authoritative = true;
         };
     };
 }

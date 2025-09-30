@@ -12,8 +12,7 @@
 
         firewall = {
             enable = true;
-            allowedTCPPorts = [ 53 ];
-            allowedUDPPorts = [ 53 ];
+            trustedInterfaces = [ "end0" ];
         };
 
         resolvconf.enable = false;
