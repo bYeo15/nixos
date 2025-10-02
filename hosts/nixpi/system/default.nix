@@ -6,5 +6,6 @@
         ./boot.nix
         ./network.nix
         ./nixFeatures.nix
+        ./virtualisation.nix
     ];
 }
