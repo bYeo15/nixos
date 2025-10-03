@@ -29,6 +29,12 @@
 
     programs.dconf.enable = true;
 
+    # Nixpad serves as Steam Remote Play client
+    programs.steam = {
+        enable = true;
+        remotePlay.openFirewall = true;
+    };
+
     documentation = {
         enable = true;
         dev.enable = true;
