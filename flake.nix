@@ -104,7 +104,17 @@
                 };
 
                 # ---[ Gaming PC ]---
-                # TODO
+                "nixpc" = nixpkgs.lib.nixosSystem {
+                    specialArgs = { inherit inputs; };
+
+                    modules = [
+                        ./hosts/modules
+                        ./hosts/nixpc
+
+                        ./users/admin.nix
+                        ./users/gaming.nix
+                    ] ++ base_modules ++ nixos_modules;
+                };
             };
 
             homeConfigurations = {
@@ -117,12 +127,8 @@
                     modules = [
                         ./users/modules
                         ./users/ben
-
                     ] ++ base_modules ++ home_modules;
                 };
-
-                # ---[ Gaming User ]---
-                # TODO
             };
         };
 }
