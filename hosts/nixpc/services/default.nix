@@ -2,6 +2,7 @@
 
 {
     imports = [
+        ./greeter.nix
         ./openssh.nix
         ./pipewire.nix
     ];

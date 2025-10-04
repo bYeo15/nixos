@@ -11,18 +11,6 @@
     };
 
     services.xserver = {
-        enable = true;
-        videoDrivers = [ "nvidia" ];
-    };
-
-    services.displayManager = {
-        enable = true;
-
-        defaultSession = "steam";
-
-        autoLogin = {
-            enable = true;
-            user = "gaming";
-        };
+        enable = false;
     };
 }
