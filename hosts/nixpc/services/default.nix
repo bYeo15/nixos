@@ -5,5 +5,6 @@
         ./greeter.nix
         ./openssh.nix
         ./pipewire.nix
+        ./sunshine.nix
     ];
 }
