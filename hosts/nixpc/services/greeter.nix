@@ -7,10 +7,7 @@
         enable = true;
         settings = {
             default_session = {
-                command = ''
-                    ${lib.getExe pkgs.gamescope} -e -- \
-                    steam -pipewire -pipewire-dmabuf -tenfoot
-                '';
+                command = "gamescopeLauncher";
                 user = "gaming";
             };
         };
