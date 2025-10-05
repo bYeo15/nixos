@@ -2,10 +2,11 @@
 
 let
     gamescopeLauncher = pkgs.writeShellScriptBin "gamescopeLauncher" ''
-        export SDL_VIDEO_DRIVER_MINIMIZE_ON_FOCUS_LOSS=0
-        ${lib.getExe pkgs.gamescope} --steam \
+        ${lib.getExe pkgs.gamescope} -f --steam \
+        --backend=headless \
         -- steam -pipewire -pipewire-dmabuf -tenfoot
     '';
+    # ^ TODO: Test steamos3 steamdeck opts, and gamescope adaptive sync/immediate flips
 in {
     nixpkgs.config.allowUnfree = true;
 
@@ -18,6 +19,8 @@ in {
         wget
 
         gamescopeLauncher
+
+        wayvnc
 
         inputs.agenix.packages."${system}".default
     ];
