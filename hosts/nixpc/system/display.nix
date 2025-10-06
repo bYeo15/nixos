@@ -14,19 +14,13 @@
         enable = true;
         videoDrivers = [ "nvidia" ];
         displayManager.startx.enable = true;
-        monitorSection = ''
-            Option "Enable" "true"
-        '';
         deviceSection = ''
-            Option "MetaModes" "1920x1200"
             Option "ConnectedMonitor" "HDMI-A-1"
             Option "ModeValidation" "NoDFPNativeResolutionCheck,NoVirtualSizeCheck,NoMaxPClkCheck,NoHorizSyncCheck,NoVertRefreshCheck,NoWidthAlignmentCheck"
         '';
         screenSection = ''
-            DefaultDepth 24
-            Option "TwinView" "True"
             SubSection "Display"
-            Modes "1920x1200"
+                Virtual 1920 1200
             EndSubSection
         '';
     };
