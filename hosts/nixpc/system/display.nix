@@ -30,5 +30,6 @@
         capSysAdmin = true;
         openFirewall = true;
         autoStart = true;
+        package = pkgs.sunshine.override { cudaSupport = true; };
     };
 }
