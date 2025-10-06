@@ -6,10 +6,10 @@ let
     gamescopeLauncher = pkgs.writeShellScriptBin "gamescopeLauncher" ''
         sunshine &>~/sunlog &
 
-        ${lib.getExe pkgs.gamescope} -f --steam \
-        -W 1920 -H 1200 \
-        -- steam -pipewire -pipewire-dmabuf -tenfoot &>~/gamelog
+        steam -pipewire -pipewire-dmabuf -tenfoot &>~/gamelog
     '';
+    #${lib.getExe pkgs.gamescope} -f --steam \
+    #-W 1920 -H 1200 \
 in {
     nixpkgs.config.allowUnfree = true;
 
