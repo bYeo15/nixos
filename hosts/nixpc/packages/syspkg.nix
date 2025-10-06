@@ -1,12 +1,15 @@
 { inputs, config, lib, pkgs, ... }:
 
 let
+    # Shell script that launches sunshine and gamescope
+    # should be run with `startx $(which gamescopeLauncher)`
     gamescopeLauncher = pkgs.writeShellScriptBin "gamescopeLauncher" ''
+        sunshine &>~/sunlog &
+
         ${lib.getExe pkgs.gamescope} -f --steam \
-        --backend=headless \
-        -- steam -pipewire -pipewire-dmabuf -tenfoot
+        -W 1920 -H 1200 \
+        -- steam -pipewire -pipewire-dmabuf -tenfoot &>~/gamelog
     '';
-    # ^ TODO: Test steamos3 steamdeck opts, and gamescope adaptive sync/immediate flips
 in {
     nixpkgs.config.allowUnfree = true;
 
@@ -19,8 +22,6 @@ in {
         wget
 
         gamescopeLauncher
-
-        wayvnc
 
         inputs.agenix.packages."${system}".default
     ];
