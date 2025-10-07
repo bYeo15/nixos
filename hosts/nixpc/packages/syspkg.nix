@@ -6,7 +6,7 @@ let
     gamescopeLauncher = pkgs.writeShellScriptBin "gamescopeLauncher" ''
         sunshine &>~/sunlog &
 
-        ${lib.getExe pkgs.gamescope} --steam -W 1920 -H 1200 -- \
+        ${lib.getExe pkgs.gamescope} --steam -f -W 1920 -H 1200 -- \
         steam -pipewire -pipewire-dmabuf -tenfoot &>~/gamelog
     '';
 in {
