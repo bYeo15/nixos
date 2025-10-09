@@ -6,8 +6,7 @@ let
     gamescopeLauncher = pkgs.writeShellScriptBin "gamescopeLauncher" ''
         sunshine &>~/sunlog &
 
-        gamescope --steam -W 1920 -H 1200 -r 60 \
-        -f --force-windows-fullscreen --force-grab-cursor \
+        gamescope --steam -W 1920 -H 1200 -r 60 -f \
         -- steam -pipewire -pipewire-dmabuf -tenfoot &>~/gamelog
     '';
 in {
