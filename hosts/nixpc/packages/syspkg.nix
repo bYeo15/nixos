@@ -6,9 +6,7 @@ let
     gamescopeLauncher = pkgs.writeShellScriptBin "gamescopeLauncher" ''
         sunshine &>~/sunlog &
 
-        gamescope --steam -W 1920 -H 1200 -r 60 -f \
-        -w 1920 -h 1200 --force-grab-cursor \
-        -- steam -pipewire -pipewire-dmabuf -tenfoot &>~/gamelog
+        steam-gamescope &>~/gamelog
     '';
 in {
     nixpkgs.config.allowUnfree = true;
@@ -37,8 +35,19 @@ in {
 
     programs.steam = {
         enable = true;
-        remotePlay.openFirewall = true;
-        gamescopeSession.enable = true;
+        gamescopeSession = {
+            enable = true;
+            args = [
+                "--steam"
+                "-W 1920"
+                "-H 1200"
+                "-r 60"
+                "-f"
+            ];
+            steamArgs = [
+                "-tenfoot"
+            ];
+        };
         package = pkgs.steam.override {
             extraPkgs = pkgs': with pkgs'; [
                 xorg.libXcursor
