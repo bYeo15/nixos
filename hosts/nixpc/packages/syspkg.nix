@@ -7,6 +7,7 @@ let
         sunshine &>~/sunlog &
 
         gamescope --steam -W 1920 -H 1200 -r 60 -f \
+        -w 1920 -h 1200 --force-grab-cursor \
         -- steam -pipewire -pipewire-dmabuf -tenfoot &>~/gamelog
     '';
 in {
