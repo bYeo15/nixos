@@ -42,6 +42,8 @@
         grim
         slurp
         glpaper
+
+        npins
     ];
 
     # --[ Programs ]--
