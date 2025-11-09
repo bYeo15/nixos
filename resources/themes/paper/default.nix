@@ -21,7 +21,7 @@
         };
 
         resources = {
-            background = ./resources/paper/background;
+            background = ./background;
         };
     };
 }
