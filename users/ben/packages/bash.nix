@@ -2,7 +2,10 @@
 
 {
     home.shellAliases = {
-        c = "clear; echo \"\${PS1@P}\"; ls";
+        c = "clear; echo \"\${PS1@P}\"; ls;";
+        u = "cd ..";
+        uu = "cd ../..";
+        l = "ls -alh";
         ls = "ls --color=auto";
         grep = "grep --color=auto";
         glow = "glow -n";
@@ -38,7 +41,7 @@
                 printf '\e]7;file://%s%s\e\\' "''${HOSTNAME}" "''${encoded}"
             }
             PROMPT_COMMAND=''${PROMPT_COMMAND:+''${PROMPT_COMMAND%;}; }osc7_cwd
-            nrun() { PROG="$1"; shift; nix run nixpkgs#"''${PROG}" -- ''$@; }
+            nrun() { PROG="''$1"; shift; nix run nixpkgs#"''${PROG}" -- "''$@"; }
             nrs() { if [[ "''$#" -ne 1 ]]; then echo "Usage: <system derivation name>"; else nixos-rebuild switch --flake ~/.nixconf#"''$1" --sudo; fi; }
         '';
 
