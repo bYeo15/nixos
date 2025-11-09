@@ -27,6 +27,7 @@ in {
             # ---=[ Applications and Launcher ]=---
             "${modifier}+Return" = "exec ${terminal}";
             "${modifier}+d" = "exec ${menu} -show drun";
+            "${modifier}+s" = "exec rofi-quicksearch";
             "${modifier}+Tab" = "exec ${menu} -show window";
 
             # ---=[ Navigation ]=---
@@ -98,6 +99,10 @@ in {
                 Right = "move right";
                 Up = "move up";
                 Down = "move down";
+                "${modifier}+h" = "move left";
+                "${modifier}+l" = "move right";
+                "${modifier}+k" = "move up";
+                "${modifier}+j" = "move down";
                 a = "focus parent";
                 s = "focus child";
                 v = "split v";
@@ -111,6 +116,10 @@ in {
                 Right = "resize grow width 10px";
                 Up = "resize grow height 10px";
                 Down = "resize shrink height 10px";
+                "${modifier}+h" = "resize shrink width 10px";
+                "${modifier}+l" = "resize grow width 10px";
+                "${modifier}+k" = "resize grow height 10px";
+                "${modifier}+j" = "resize shrink height 10px";
                 Return = "mode \"default\"";
                 Escape = "mode \"default\"";
             };
