@@ -8,7 +8,7 @@ let
 
         REGEX_SITE="[^\s]+\.[^\s]+"
 
-        SEARCH=''$(rofi -dmenu -p "Search Term: " -theme-str 'window{height:32;}')
+        SEARCH=''$(echo | rofi -dmenu -p "Search Term: " -theme-str 'window{height:32;}')
 
         if [[ -z ''$SEARCH ]]; then exit 1; fi
 
