@@ -20,8 +20,34 @@ let
             exec ''${BROWSER} ''${ARGS} "''${ENGINE}''${SEARCH}"
         fi
     '';
+
+    devshell-manager = pkgs.writeShellScriptBin "devsh" ''
+        TARGET_DEVSHELL=${config.devshells.devshells.default}
+
+        case $1 in
+            "help" | "--help")
+                echo "Usage: <shell>"
+                echo -e "${lib.attrsets.foldlAttrs (acc: n: v: acc + "\n\t${n}") "Available Shells:" config.devshells.devshells}"
+                exit 0
+            ;;
+            ${lib.attrsets.foldlAttrs (acc: n: v: acc + "${n})\nTARGET_DEVSHELL=${v}\n;;\n") "" config.devshells.devshells}
+            "")
+            ;;
+            *)
+                echo "[ ERROR ] : ''$1 is not a known devshell"
+                exit 1
+            ;;
+        esac
+
+        cp "''$TARGET_DEVSHELL" ./shell.nix
+        chmod u+w ./shell.nix
+        npins init
+        echo "use nix" > ./.envrc
+    '';
 in {
     home.packages = [
         rofi-quicksearch
+
+        devshell-manager
     ];
 }
