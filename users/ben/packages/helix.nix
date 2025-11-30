@@ -76,6 +76,7 @@
                     up = "no_op";
 
                     d = "delete_selection_noyank";
+                    c = "change_selection_noyank";
                     m = "match_brackets";
 
                     # <X : capital> : "larger" version of <x>
@@ -84,6 +85,7 @@
                     K = "page_up";
                     J = "page_down";
                     D = "delete_selection";
+                    C = "change_selection";
                     V = [ "goto_line_start" "select_mode" ];
 
                     # Space : utilities, external integrations
@@ -122,6 +124,10 @@
 
                 select = {
                     v = [ "goto_line_end" "normal_mode" ];
+                    d = "delete_selection_noyank";
+                    c = "change_selection_noyank";
+                    D = "delete_selection";
+                    C = "change_selection";
                 };
             };
         };
@@ -171,6 +177,29 @@
                     };
                 };
             };
+
+            language = [
+                {
+                    name = "c";
+                    file-types = [ "c" "h" ];
+                    indent.tab-width = 4;
+                    indent.unit = "    ";
+                }
+
+                {
+                    name = "markdown";
+                    file-types = [ "md" ];
+                    indent.tab-width = 4;
+                    indent.unit = "    ";
+                }
+
+                {
+                    name = "nix";
+                    file-types = [ "nix" ];
+                    indent.tab-width = 4;
+                    indent.unit = "    ";
+                }
+            ];
         };
     };
 }
