@@ -59,7 +59,8 @@ let
         if [[ "''$1" = "list" ]]; then
             wpctl status | \
                 awk '/Streams/ { flag=1; next } /Video/ { flag = 0; exit } flag' | \
-                grep "\[active\]" -B 1 | grep -v "\[active\]" | grep -o "[A-Za-Z]*"
+                grep -e "\[active\]" -e "\[paused\]" -B 1 | grep -v -e "\[active\]" -e "\[paused\]" | \
+                sed 's/.*[0-9]*\. //'
             exit 0
         elif [[ "''$1" = "OUT" ]]; then
             TARGET="@DEFAULT_SINK@"
@@ -68,7 +69,7 @@ let
         else
             TARGET="''$(wpctl status | \
                 awk '/Streams/ { flag=1; next } /Video/ { flag = 0; exit } flag' | \
-                grep "\[active\]" -B 1 | grep -v "\[active\]" | \
+                grep -e "\[active\]" -e "\[paused\]" -B 1 | grep -v -e "\[active\]" -e "\[paused\]" | \
                 grep -i "''$1" | grep -o "[0-9]*")"
             if [[ "''$?" -ne 0 ]]; then
                 echo "Could not find target ''$1"
