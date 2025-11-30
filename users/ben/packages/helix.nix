@@ -86,14 +86,8 @@
                     J = "page_down";
                     D = "delete_selection";
                     C = "change_selection";
-                    V = [ "goto_line_start" "select_mode" ];
+                    V = [ "extend_to_line_bounds" "select_mode" ];
 
-                    # Space : utilities, external integrations
-                    space = {
-                        space = "file_explorer_in_current_directory";
-                        n = "goto_next_buffer";
-                        m = "goto_previous_buffer";
-                    };
 
                     # Tab : lsp
                     tab = {
@@ -112,6 +106,25 @@
                         j = "goto_file_end";
                         l = "goto_line_end";
                     };
+
+                    # b : buffer/window control
+                    b = {
+                        n = "goto_next_buffer";
+                        m = "goto_previous_buffer";
+
+                        h = "jump_view_left";
+                        j = "jump_view_down";
+                        k = "jump_view_up";
+                        l = "jump_view_right";
+
+                        v = "vsplit";
+                        V = [ "vsplit" "file_explorer_in_current_directory" ];
+                        x = "hsplit";
+                        X = [ "hsplit" "file_explorer_in_current_directory" ];
+                        c = "wclose";
+                        C = ":buffer-close";
+                        space = "file_explorer_in_current_directory";
+                    };
                 };
 
                 insert = {
@@ -123,7 +136,7 @@
                 };
 
                 select = {
-                    v = [ "goto_line_end" "normal_mode" ];
+                    v = [ "extend_to_line_bounds" "normal_mode" ];
                     d = "delete_selection_noyank";
                     c = "change_selection_noyank";
                     D = "delete_selection";
