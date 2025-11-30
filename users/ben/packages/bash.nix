@@ -2,7 +2,7 @@
 
 {
     home.shellAliases = {
-        c = "clear; echo \"\${PS1@P}\"; ls;";
+        c = "clear; echo \"\${PS1@P}\"; ls";
         u = "cd ..";
         uu = "cd ../..";
         l = "ls -alh";

@@ -44,10 +44,53 @@ let
         npins init
         echo "use nix" > ./.envrc
     '';
+
+    volume-wrapper = pkgs.writeShellScriptBin "volctl" ''
+        if [[ "$1" = "" || "$1" = "help" || "$1" = "--help" ]]; then
+            echo "Usage: (<target> [<vol %>]) | list"
+            echo "<target> : the process to target (no case)"
+            echo "           special targets OUT and IN target current audio output/input"
+            echo "<vol %> : the volume to assign to the target"
+            echo "          if not provided, toggles mute/unmute"
+            echo "list : list available targets"
+            exit 0
+        fi
+
+        if [[ "''$1" = "list" ]]; then
+            wpctl status | \
+                awk '/Streams/ { flag=1; next } /Video/ { flag = 0; exit } flag' | \
+                grep "\[active\]" -B 1 | grep -v "\[active\]" | grep -o "[A-Za-Z]*"
+            exit 0
+        elif [[ "''$1" = "OUT" ]]; then
+            TARGET="@DEFAULT_SINK@"
+        elif [[ "''$1" = "IN" ]]; then
+            TARGET="@DEFAULT_SOURCE@"
+        else
+            TARGET="''$(wpctl status | \
+                awk '/Streams/ { flag=1; next } /Video/ { flag = 0; exit } flag' | \
+                grep "\[active\]" -B 1 | grep -v "\[active\]" | \
+                grep -i "''$1" | grep -o "[0-9]*")"
+            if [[ "''$?" -ne 0 ]]; then
+                echo "Could not find target ''$1"
+                exit 1
+            fi
+        fi
+
+        if [[ "''$2" = "" ]]; then
+            wpctl set-mute "''${TARGET}" toggle
+        else
+            if [ "''$2" -eq "''$2" ] 2>/dev/null; then
+                wpctl set-volume "''${TARGET}" "''$2%"
+            else
+                echo "Volume (''$2) is not a number"
+                exit 1
+            fi
+        fi
+    '';
 in {
     home.packages = [
         rofi-quicksearch
-
         devshell-manager
+        volume-wrapper
     ];
 }
