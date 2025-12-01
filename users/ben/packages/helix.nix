@@ -80,6 +80,7 @@
                     m = "match_brackets";
 
                     # <X : capital> : "larger" version of <x>
+                    X = "copy_selection_on_next_line";
                     L = "move_next_word_start";
                     H = "move_prev_word_start";
                     K = "page_up";
