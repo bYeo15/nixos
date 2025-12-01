@@ -22,7 +22,8 @@ let
     '';
 
     devshell-manager = pkgs.writeShellScriptBin "devsh" ''
-        TARGET_DEVSHELL=${config.devshells.devshells.default}
+        TARGET_DEVSHELL=${config.devshells.devshells.default.template}
+        INIT_HOOK=${config.devshells.devshells.default.hook}
 
         case $1 in
             "help" | "--help")
@@ -30,7 +31,7 @@ let
                 echo -e "${lib.attrsets.foldlAttrs (acc: n: v: acc + "\n\t${n}") "Available Shells:" config.devshells.devshells}"
                 exit 0
             ;;
-            ${lib.attrsets.foldlAttrs (acc: n: v: acc + "${n})\nTARGET_DEVSHELL=${v}\n;;\n") "" config.devshells.devshells}
+            ${lib.attrsets.foldlAttrs (acc: n: v: acc + "${n})\nTARGET_DEVSHELL=${v.template}\nINIT_HOOK=${v.hook};;\n") "" config.devshells.devshells}
             "")
             ;;
             *)
@@ -42,6 +43,8 @@ let
         cp "''$TARGET_DEVSHELL" ./shell.nix
         chmod u+w ./shell.nix
         npins init
+        npins freeze nixpkgs
+        eval '''$INIT_HOOK'
         echo "use nix" > ./.envrc
     '';
 

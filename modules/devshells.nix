@@ -1,9 +1,23 @@
 { inputs, config, lib, pkgs, ... }:
 
-{
+let
+    devshell = with lib; with types; submodule {
+        options = {
+            template = mkOption {
+                type = path;
+                description = "Path at which the devshell template is provided";
+            };
+            hook = mkOption {
+                type = str;
+                description = "Sequence of bash commands to execute when loading the devshell";
+                default = "";
+            };
+        };
+    };
+in {
     options.devshells = with lib; with types; {
         devshells = mkOption {
-            type = attrsOf (path);
+            type = attrsOf (devshell);
             description = "A set of available devshells";
             default = { };
         };
