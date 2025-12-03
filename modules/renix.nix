@@ -59,7 +59,7 @@ let
                 default = 10;
             };
             resources = mkOption {
-                type = attrsOf (either path str);
+                type = attrsOf (oneOf [ path str attrs ]);
                 default = { };
                 description = ''
                     A set of available resources
@@ -67,6 +67,7 @@ let
                         - background [path] : The background image for the desktop & lock screen
                         - fragment [path] : The fragment shader to be launched as a desktop background
                         - helixBase [str] : The `helix` theme to use as a base for the custom theme
+                        - waybarSettings [attrset] : An alternative waybar config
                 '';
             };
         };

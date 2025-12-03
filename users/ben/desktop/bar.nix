@@ -4,7 +4,9 @@
     programs.waybar = {
         enable = true;
         systemd.enable = true;
-        settings = {
+        settings = if (config.renix.activeTheme.resources ? "waybarSettings")
+            then config.renix.activeTheme.resources.waybarSettings
+        else {
             mainBar = {
                 layer = "top";
                 position = "top";
