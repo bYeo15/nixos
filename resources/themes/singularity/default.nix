@@ -73,8 +73,8 @@
                     "idle_inhibitor" = {
                         format = "<b>{icon}</b>";
                         format-icons = {
-                            activated = "⊰⊚⊱";
-                            deactivated = "⊰⊘⊱";
+                            activated = "≺⊚≻";
+                            deactivated = "≺⊗≻";
                         };
                     };
 
