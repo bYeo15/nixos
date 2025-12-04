@@ -27,6 +27,12 @@ in with config.renix.activeTheme; {
                     resolution = "1920x1200";
                     position = "0 0";
                     transform = "90";
+
+                };
+                DP-9 = {
+                    resolution = "1920x1200";
+                    position = "0 0";
+                    transform = "90";
                 };
 
                 "*" = {
@@ -174,6 +180,12 @@ in with config.renix.activeTheme; {
                     always = false;
                     command = ''
                         ${pkgs.glpaper}/bin/glpaper -F DP-8 ${resources.fragment}
+                    '';
+                }
+                {
+                    always = false;
+                    command = ''
+                        ${pkgs.glpaper}/bin/glpaper -F DP-9 ${resources.fragment}
                     '';
                 }
             ];
