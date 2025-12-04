@@ -12,6 +12,10 @@
         font-awesome
         departure-mono
         nerd-fonts.symbols-only
+
+        # ---=[ Misc Fonts ]=---
+        julia-mono
+        gohufont
     ];
 
     fonts.fontconfig = {

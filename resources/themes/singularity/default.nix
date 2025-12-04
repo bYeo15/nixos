@@ -2,7 +2,8 @@
 
 {
     config.renix.themes."singularity" = {
-        fontMono = "FreeMono";
+        fontMono = "GohuFont";
+        fontSizeNormal = 11;
         fontSerif = "FreeSerif";
         fontSans = "FreeSans";
 
@@ -73,8 +74,8 @@
                     "idle_inhibitor" = {
                         format = "<b>{icon}</b>";
                         format-icons = {
-                            activated = "≺⊚≻";
-                            deactivated = "≺⊗≻";
+                            activated = "‹o›";
+                            deactivated = "‹x›";
                         };
                     };
 
@@ -96,7 +97,7 @@
                     };
 
                     "backlight" = {
-                        format = "B:{percent}%";
+                        format = "L:{percent}%";
                     };
 
                     "battery" = {
@@ -106,10 +107,10 @@
                             critical = 15;
                         };
                         full-at = 75;
-                        format = "{capacity}% {icon}";
-                        format-full = "{capacity}% {icon}";
-                        format-charging = "{capacity}% [⌁⌁⌁]";
-                        format-plugged = "{capacity}% [■■■]";
+                        format = "B:{capacity}% {icon}";
+                        format-full = "B:{capacity}% {icon}";
+                        format-charging = "B:{capacity}% [⌁⌁⌁]";
+                        format-plugged = "B:{capacity}% [■■■]";
                         format-icons = [ "[   ]" "[■  ]" "[■■ ]" "[■■■]" ];
                     };
 
