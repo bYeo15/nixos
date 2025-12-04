@@ -19,7 +19,7 @@
         libreoffice-fresh
         krita
         inkscape
-        libresprite
+        aseprite
 
         discord
 
