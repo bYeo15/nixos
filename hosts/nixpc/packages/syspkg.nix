@@ -21,7 +21,9 @@ in {
 
         gamescopeLauncher
 
-        inputs.agenix.packages."${system}".default
+        retroarch
+
+        inputs.agenix.packages."${stdenv.hostPlatform.system}".default
     ];
 
     programs.gamemode = {
