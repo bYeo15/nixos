@@ -21,6 +21,8 @@ in {
 
         gamescopeLauncher
 
+        retroarch-with-cores
+
         inputs.agenix.packages."${system}".default
     ];
 
