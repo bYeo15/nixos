@@ -13,7 +13,6 @@
         foot-detach = "foot & disown";
         icat = "img2sixel";
         nsh = "nix-shell -p";
-        hms = "home-manager switch --flake ~/.nixconf#ben";
     };
 
     home.sessionVariables = {
@@ -42,7 +41,6 @@
             }
             PROMPT_COMMAND=''${PROMPT_COMMAND:+''${PROMPT_COMMAND%;}; }osc7_cwd
             nrun() { PROG="''$1"; shift; nix run nixpkgs#"''${PROG}" -- "''$@"; }
-            nrs() { if [[ "''$#" -ne 1 ]]; then echo "Usage: <system derivation name>"; else nixos-rebuild switch --flake ~/.nixconf#"''$1" --sudo; fi; }
         '';
 
         historyIgnore = [
