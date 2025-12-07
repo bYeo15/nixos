@@ -62,6 +62,9 @@ in {
                 stdenv.cc.cc.lib
                 libkrb5
                 keyutils
+
+                # Non-gamescope
+                libglvnd
             ];
         };
     };
