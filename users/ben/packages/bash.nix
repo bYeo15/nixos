@@ -44,10 +44,10 @@
         '';
 
         historyIgnore = [
-            "ls"
-            "cd"
+            "ls" "l"
+            "cd" "u" "uu"
             "exit"
-            "clear"
+            "clear" "c"
         ];
     };
 }
