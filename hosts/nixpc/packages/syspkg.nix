@@ -21,7 +21,14 @@ in {
 
         gamescopeLauncher
 
-        retroarch
+        (retroarch.withCores (cores: with cores; [
+            citra
+            dolphin
+            pcsx-rearmed
+            pcsx2
+        ]))
+
+        retroarch-assets
 
         inputs.agenix.packages."${stdenv.hostPlatform.system}".default
     ];
