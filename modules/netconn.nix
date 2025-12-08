@@ -21,8 +21,13 @@ in {
             default = { };
         };
         dhcpMappings = mkOption {
+            type = attrsOf (str);
+            description = "Mappings <meaningful device name> -> <subnet ip>";
+            default = { };
+        };
+        dhcpConfig = mkOption {
             type = listOf (str);
-            description = "A list of DHCP mappings (MAC -> subnet IP)";
+            description = "DHCP config in a format matching your DHCP server of choice";
             default = [];
         };
     };
