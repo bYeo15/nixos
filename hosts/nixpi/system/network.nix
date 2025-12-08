@@ -15,10 +15,17 @@
             trustedInterfaces = [ "end0" ];
         };
 
-        nftables = {
+        nftables = with config.netconn; {
             enable = true;
             ruleset = ''
                 table ip nat {
+                    chain PREROUTING {
+                        type nat hook prerouting priority -100;
+                        # Redirect traffic on default sunshine/moonlight ports to the pc
+                        iifname "wlan0" tcp dport { 47974, 47989, 48010 } dnat to ${dhcpMappings.nixpc}
+                        iifname "wlan0" udp dport { 47998, 47999, 48000 } dnat to ${dhcpMappings.nixpc}
+                    }
+
                     chain POSTROUTING {
                         type nat hook postrouting priority 100;
                         oifname "wlan0" counter masquerade

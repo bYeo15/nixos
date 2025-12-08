@@ -70,7 +70,7 @@ in {
                 libkrb5
                 keyutils
 
-                # Non-gamescope
+                # Retroarch
                 libglvnd
             ];
         };
