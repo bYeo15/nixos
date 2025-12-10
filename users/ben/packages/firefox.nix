@@ -3,6 +3,11 @@
 {
     programs.firefox = {
         enable = true;
+        policies = {
+            DisableTelemetry = true;
+            DisableFirefoxStudies = true;
+            DisablePocket = true;
+        };
         profiles = {
             default = {
                 id = 0;
@@ -30,6 +35,9 @@
                     "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
                     # -- Download --
                     "browser.download.dir" = "/home/ben/downloads";
+                    # -- No AI --
+                    "browser.ml.enable" = false;
+                    "browser.ml.chat.enabled" = false;
 
                     "extensions.pocket.enabled" = false;
                 };
@@ -39,7 +47,13 @@
                     privateDefault = "ddg";
                     # ===[ Custom Searches ]===
                     engines = {
-                        "Nixpkg" = {
+                        "DuckDuckGo" = {
+                            urls = [{
+                                template = "https://noai.duckduckgo.com/?q={searchTerms}";
+                            }];
+                            definedAliases = [ "@ddg" ];
+                        };
+                        "Nixpkgs" = {
                             urls = [{
                                 template = "https://search.nixos.org/packages";
                                 params = [
@@ -68,6 +82,7 @@
                             definedAliases = [ "@ng" ];
                         };
                         "HomeManagerOpts" = {
+                            name = "HomeManager";
                             urls = [{ template = "https://home-manager-options.extranix.com/?query={searchTerms}"; }];
                             definedAliases = [ "@hm" ];
                         };
@@ -75,6 +90,12 @@
                             urls = [{ template = "https://reddit.com/r/{searchTerms}/hot"; }];
                             definedAliases = [ "@rd" ];
                         };
+
+                        # -- Disable Unwanted Engines --
+                        "google".metaData.hidden = true;
+                        "perplexity".metaData.hidden = true;
+                        "bing".metaData.hidden = true;
+                        "ebay".metaData.hidden = true;
                     };
                 };
                 bookmarks = {

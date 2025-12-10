@@ -4,7 +4,7 @@ let
     rofi-quicksearch = pkgs.writeShellScriptBin "rofi-quicksearch" ''
         BROWSER=firefox
         ARGS=--private-window
-        ENGINE="https://duckduckgo.com/?q="
+        ENGINE="https://noai.duckduckgo.com/?q="
 
         REGEX_SITE="[^\s]+\.[^\s]+"
 
