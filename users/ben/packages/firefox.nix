@@ -35,6 +35,7 @@
                     "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
                     # -- Download --
                     "browser.download.dir" = "/home/ben/downloads";
+                    "browser.download.deletePrivate" = false;
                     # -- No AI --
                     "browser.ml.enable" = false;
                     "browser.ml.chat.enabled" = false;
