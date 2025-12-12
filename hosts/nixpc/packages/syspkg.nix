@@ -3,10 +3,13 @@
 let
     # Shell script that launches sunshine and gamescope
     # should be run with `startx $(which gamescopeLauncher)`
-    gamescopeLauncher = pkgs.writeShellScriptBin "gamescopeLauncher" ''
-        sunshine &>~/sunlog &
+    steamLauncher = pkgs.writeShellScriptBin "steamLauncher" ''
+        xrandr -s 1920x1200
 
-        steam-gamescope &>~/gamelog
+        xdotool search --onlyvisible --sync "Steam" windowsize 100% 100% windowmove 0 0 &
+
+        sunshine &>~/sunlog &
+        steam -tenfoot &>~/steamlog
     '';
 in {
     nixpkgs.config.allowUnfree = true;
@@ -19,7 +22,8 @@ in {
         curl
         wget
 
-        gamescopeLauncher
+        xdotool
+        steamLauncher
 
         (retroarch.withCores (cores: with cores; [
             citra
@@ -44,18 +48,6 @@ in {
 
     programs.steam = {
         enable = true;
-        gamescopeSession = {
-            enable = true;
-            args = [
-                "--steam"
-                "-W 1920"
-                "-H 1200"
-                "-f"
-            ];
-            steamArgs = [
-                "-tenfoot"
-            ];
-        };
         package = pkgs.steam.override {
             extraPkgs = pkgs': with pkgs'; [
                 xorg.libXcursor

@@ -7,7 +7,7 @@
         enable = true;
         settings = {
             default_session = {
-                command = "startx \$(which gamescopeLauncher)";
+                command = "startx \$(which steamLauncher)";
                 user = "gaming";
             };
         };
