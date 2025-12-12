@@ -4,10 +4,10 @@ let
     # Shell script that launches sunshine and gamescope
     # should be run with `startx $(which gamescopeLauncher)`
     gamescopeLauncher = pkgs.writeShellScriptBin "gamescopeLauncher" ''
-        sunshine &>~/sunlog &
+        # sunshine &>~/sunlog &
 
         #steam-gamescope &>~/gamelog
-        steam -tenfoot &>~/gamelog
+        steam -tenfoot -fulldesktopres -fullscreen &>~/steamlog
     '';
 in {
     nixpkgs.config.allowUnfree = true;
