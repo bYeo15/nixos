@@ -6,7 +6,8 @@ let
     gamescopeLauncher = pkgs.writeShellScriptBin "gamescopeLauncher" ''
         sunshine &>~/sunlog &
 
-        steam-gamescope &>~/gamelog
+        #steam-gamescope &>~/gamelog
+        steam -tenfoot &>~/gamelog
     '';
 in {
     nixpkgs.config.allowUnfree = true;
@@ -45,7 +46,7 @@ in {
     programs.steam = {
         enable = true;
         gamescopeSession = {
-            enable = true;
+            enable = false;
             args = [
                 "--steam"
                 "-W 1920"
