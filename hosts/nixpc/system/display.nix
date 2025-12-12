@@ -27,6 +27,10 @@
                 Virtual 1920 1200
             EndSubSection
         '';
+
+        windowManager.dwm = {
+            enable = true;
+        };
     };
 
     services.sunshine = {

@@ -6,8 +6,7 @@ let
     steamLauncher = pkgs.writeShellScriptBin "steamLauncher" ''
         xrandr -s 1920x1200
 
-        xdotool search --onlyvisible --sync "Steam" windowsize 100% 100% windowmove 0 0 &
-
+        dwm &
         sunshine &>~/sunlog &
         steam -tenfoot &>~/steamlog
     '';
