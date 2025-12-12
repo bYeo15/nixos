@@ -15,7 +15,7 @@
         videoDrivers = [ "nvidia" ];
         displayManager.startx.enable = true;
         deviceSection = ''
-            Option "ConnectedMonitor" "HDMI-A-1"
+            Option "ConnectedMonitor" "HDMI-0"
             Option "ModeValidation" "NoDFPNativeResolutionCheck,NoVirtualSizeCheck,NoMaxPClkCheck,NoHorizSyncCheck,NoVertRefreshCheck,NoWidthAlignmentCheck"
         '';
         screenSection = ''
