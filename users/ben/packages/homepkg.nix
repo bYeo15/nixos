@@ -9,6 +9,8 @@
         # --[ Terminal Utilities ]--
         glow
         libsixel
+        slides
+        bc
 
         # --[ LSP ]--
         nil
