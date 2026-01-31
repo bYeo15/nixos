@@ -149,7 +149,7 @@
                                         {
                                             name = "USYD Timetable";
                                             tags = [ "usyd" ];
-                                            url = "https://timetable.sydney.edu.au/odd/student";
+                                            url = "https://timetable.sydney.edu.au/even/student";
                                         }
                                         {
                                             name = "USYD GitHub";
